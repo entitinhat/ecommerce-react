@@ -260,9 +260,9 @@ img.cover {
   margin: 0.1rem;
 }
 
-.rating span:last-child {
+/* .rating span:last-child {
   color: black;
-}
+} */
 
 /* InStock or Not */
 .success {
@@ -319,8 +319,19 @@ img.cover {
 .fa-trash,
 .fa-pencil {
   margin-left: 0.5rem;
-
 }
+
+.fa-smile-o,
+.fa-commenting-o {
+  margin-left: 0.8rem;
+  font-size: 1.5rem;
+}
+
+/* .fa-smile-o {
+  color: rgb(242, 218, 4);
+} */
+
+
 
 .add-cart:hover {
   border: 0.1rem #404040 solid;
@@ -342,10 +353,54 @@ form {
   margin: auto;
 }
 
+
+
 .form>div {
   display: flex;
   flex-direction: column;
   margin: 1rem;
+}
+
+form.review-form {
+  max-width: 100%;
+  margin: 0;
+}
+
+form.review-form>div {
+  display: block;
+  margin: 2rem 0rem;
+}
+
+form.review-form>div>label {
+  margin: 2rem 0rem;
+}
+
+/* form.review-form>div>label {
+
+  margin: 8rem 0rem;
+} */
+
+form.review-form>div>textarea {
+  display: block;
+  width: 100%;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+form.review-form>div>select {
+  display: block;
+  width: 100%;
+  padding: 0.6rem;
+  margin: 0.5rem 0rem;
+}
+
+
+.review-form textarea {
+  margin: 0.5rem 0rem;
+}
+
+textarea {
+  display: block;
 }
 
 label {
@@ -749,4 +804,59 @@ tr {
   margin: 0;
   color: rgb(52, 62, 106);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.login-review {
+
+  background-color: rgb(35, 105, 190);
+  color: white;
+  width: 50%;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.message-review {
+  border-radius: 0.4rem;
+  padding: 1.5rem;
+  background-color: rgb(147, 191, 245);
+}
+
+
+.review-section {
+
+  margin: 2rem 4rem 4rem;
+}
+
+.review-section>div {
+  background-color: rgb(255, 255, 255);
+}
+
+.review-section>div>h1 {
+  font-size: 3rem;
+}
+
+.review-comment {
+  border: 0.2rem rgb(224, 220, 220) solid;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  margin: 0.8rem 0rem;
+}
+
+.review-comment div {
+  padding: 1rem 0rem;
+
+}
+
+.review-comment p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: italic;
+  font-weight: 400;
+
+}
+
+.num-review {
+  margin-left: 1rem;
+  font-family: cursive;
 }

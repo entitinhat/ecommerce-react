@@ -14,9 +14,9 @@ export default function SignInScreen(props) {
     const redirect = searchParams.get('redirect') ? 'shipping' : ''; // giá trị là shipping khi nhắn từ link thanh toán, lúc đầu nhấn sign in luôn thì sẽ là null
     const navigate = useNavigate();
     const userSignin = useSelector((state) => state.userSignin);
-    const cart = useSelector((state) => state.cart);
-    const { userInfo, loading, error, success } = userSignin;
 
+    const { userInfo, loading, error, success } = userSignin;
+    const cart = useSelector((state) => state.cart);
     const [eye, setEye] = useState(<i className="fa fa-eye-slash eye-icon"></i>);
     const [typePassword, setTypePassword] = useState("password");
     const toggleEye = () => {

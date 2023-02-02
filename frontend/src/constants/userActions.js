@@ -112,7 +112,7 @@ export const signin = (email, password) => async (dispatch) => {
             type: USER_SIGNIN_SUCCESS,
             payload: data
         })
-        alert('Login successfully!')
+        alert('Login successfully!  ')
         localStorage.setItem('userInfo', JSON.stringify(data));
     }
     catch (error) {
