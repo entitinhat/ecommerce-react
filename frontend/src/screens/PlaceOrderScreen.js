@@ -5,7 +5,7 @@ import CheckoutSteps from '../component/CheckoutSteps'
 import ShippingAddressScreen from './ShippingAddressScreen'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import EmailSending from '../component/EmailSending.js'
+// import EmailSending from '../component/EmailSending.js'
 import { CART_CLEAR } from '../constants/cartConstants';
 
 
@@ -34,7 +34,7 @@ export default function PlaceOrderScreen() {
     const sendEmail = async (e) => {
         e.preventDefault();
         alert('Order Successfully! You can check your email to see your orders. Thanks for choosing our shop! Have A Nice Day ^^ ');
-        navigate('/home');
+        // navigate('/home');
         dispatch({ type: CART_CLEAR });
         const res = await fetch('/api/send', {
             method: "POST",
@@ -44,6 +44,7 @@ export default function PlaceOrderScreen() {
             body: JSON.stringify({
                 email,
                 cartItemsClone,
+                userInfo
             })
         });
 
