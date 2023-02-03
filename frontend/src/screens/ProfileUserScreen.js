@@ -49,6 +49,7 @@ export default function ProfileUserScreen() {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
 
     const [password, setPassword] = useState('');
     const [address, setAddress] = useState('');
@@ -79,6 +80,7 @@ export default function ProfileUserScreen() {
                 setName(data.name);
                 setEmail(data.email);
                 setProfileImage(data.profileImage);
+                setIsAdmin(data.isAdmin);
                 dispatch({
                     type: 'FETCH_SUCCESS',
                     payload: data,
@@ -102,6 +104,7 @@ export default function ProfileUserScreen() {
             setName(user.name);
             setEmail(user.email);
             setProfileImage(user.profileImage);
+            setIsAdmin(user.isAdmin);
             // setPassword(user.password);
             // setAddress(user.address);
             // setCity(user.city);
@@ -112,7 +115,7 @@ export default function ProfileUserScreen() {
 
     const submitFormHandler = (e) => {
         // e.preventDefault();
-        dispatchh(updateUserProfile({ userId: user._id, name, email, password, profileImage }))
+        dispatchh(updateUserProfile({ userId: user._id, name, email, password, profileImage, isAdmin }))
     }
     const uploadFileHandler = async (e) => {
         const file = e.target.files[0];

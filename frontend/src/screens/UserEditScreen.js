@@ -37,7 +37,7 @@ export default function UserEditScreen() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
 
-    const [isAdmin, setIsAdmin] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
 
 
     const userSignin = useSelector(state => state.userSignin);
@@ -105,7 +105,7 @@ export default function UserEditScreen() {
                     _id: id,
                     name,
                     email,
-                    isAdmin
+                    isAdmin,
                 },)
             // {
             //     headers: { Authorization: `Bearer ${userInfo.token}` }

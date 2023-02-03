@@ -94,7 +94,7 @@ userRouter.put('/:id',
         if (user) {
             user.name = req.body.name || user.name;
             user.email = req.body.email || user.email;
-            user.isAdmin = Boolean(req.body.isAdmin) || user.isAdmin;
+            user.isAdmin = Boolean(req.body.isAdmin);
             user.profileImage = req.body.profileImage || user.profileImage;
             const updatedUser = await user.save();
             res.send({ message: 'user updated', user: updatedUser })
