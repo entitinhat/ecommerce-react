@@ -34,7 +34,7 @@ export default function PlaceOrderScreen() {
     const sendEmail = async (e) => {
         e.preventDefault();
         alert('Order Successfully! You can check your email to see your orders. Thanks for choosing our shop! Have A Nice Day ^^ ');
-        // navigate('/home');
+        navigate('/home');
         dispatch({ type: CART_CLEAR });
         const res = await fetch('/api/send', {
             method: "POST",
