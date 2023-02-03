@@ -515,12 +515,61 @@ input[type="radio"] {
 
 }
 
+/* Profile pic */
 .profile-pic-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
+
+.profile-pic {
+  width: 20rem;
+  height: 20rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 0.4rem rgb(61, 212, 91) solid;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.profile-pic-wrapper>:first-child {
+  position: relative;
+  /* background-color: red; */
+}
+
+.profile-pic-wrapper>:nth-child(2) {
+  /* background-color: gold; */
+  margin-top: 0.8rem;
+  font-size: 2rem;
+  font-weight: 600;
+  /* background-color: red; */
+}
+
+.input-file-profile {
+  background-color: green;
+  width: 1.7rem;
+  position: absolute;
+  right: 0.4rem;
+  bottom: 0.3rem;
+  z-index: 2;
+  opacity: 0%;
+  cursor: pointer;
+}
+
+.fa-pencil-square {
+  color: rgb(31, 67, 176);
+  position: absolute;
+  font-size: 4.2rem;
+  right: 0.4rem;
+  bottom: 0.2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  /* z-index: -1; */
+}
+
+
+
 
 .container {
   display: flex;
@@ -529,15 +578,7 @@ input[type="radio"] {
   position: relative;
 }
 
-.profile-pic {
-  width: 20rem;
-  height: 20rem;
-  object-fit: cover;
-  border-radius: 50%;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-}
+
 
 .sidebar-btn {
   background-color: #203040;

@@ -157,14 +157,14 @@ export default function ProfileUserScreen() {
                         </MessageBox>
                     )}
                     <div >
-                        <div className="profile-bar row">
-                            <h1>Profile</h1>
-                            <h1>Orders</h1>
-                            <h1>Payment</h1>
+                        <div className="profile-bar row center">
+                            <h1>Edit Profile</h1>
                         </div>
                         <div className="profile-pic-wrapper">
                             <div>
                                 <img src={profileImage} className="profile-pic" alt=""></img>
+                                <i className="fa fa-pencil-square" aria-hidden="true" ></i>
+                                <input type='file' className="input-file-profile" onChange={uploadFileHandler}></input>
                             </div>
                             <div>{name}</div>
                             {/* <div>
@@ -176,20 +176,20 @@ export default function ProfileUserScreen() {
 
                         <form className="form" onSubmit={submitFormHandler}>
                             <div>
-                                <label htmlFor='profileImage'>Image</label>
+                                <label htmlFor='profileImage'>Image URL</label>
                                 <input type='text' id='profileImage'
                                     value={profileImage}
                                     onChange={(e) => setProfileImage(e.target.value)} ></input>
                             </div>
 
-                            <div>
+                            {/* <div>
                                 <input type='file' id='imageFile'
                                     onChange={uploadFileHandler}
                                 ></input>
-                                {/* <div>
+                                <div>
                                     <img src={profileImage} className="profile-pic" alt=""></img>
-                                </div> */}
-                            </div>
+                                </div>
+                            </div> */}
                             <div>
                                 <label htmlFor='email'>Email </label>
                                 <input type='email' id='email' value={email} disabled

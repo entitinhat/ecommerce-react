@@ -124,7 +124,7 @@ export default function ProductScreen(props) {
                                 <div className="row-left">
                                     <Rating
                                         rating={product.rating} numReviews={product.numReviews} />
-                                    <span className="num-review">{product.numReviews} reviews</span>
+                                    <span className="num-review">{product.numReviews} {product.numReviews > 1 ? 'reviews' : 'review'}</span>
                                 </div>
                             </ul>
                             <ul className="product-ul">

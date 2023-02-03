@@ -160,7 +160,7 @@ export default function UserEditScreen() {
                     <div>
                         <label htmlFor='isAdmin'>Change To Admin</label>
                         <input type='checkbox' id='isAdmin'
-                            checked={isAdmin}
+                            checked={email === 'nhatktvn2001@gmail.com' ? 'true' : isAdmin}
                             onChange={(e) => {
                                 if (email !== userInfo.email && email !== 'nhatktvn2001@gmail.com') {
                                     setIsAdmin(e.target.checked)
