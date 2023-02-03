@@ -5,6 +5,7 @@ import { Navigate, useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom';
 import LoadingBox from '../component/LoadingBox';
 import MarkDownEditor from '../component/MarkDownEditor';
+import MessageBox from '../component/MessageBox';
 
 
 const reducer = (state, action) => {
@@ -158,7 +159,8 @@ export default function ProductEditScreen() {
         }
     };
     const handleCallback = (childData) => {
-        setDescription(childData)
+        setDescription(childData[0]);
+        setBrand(childData[1]);
     }
     return (
         <div>
@@ -205,19 +207,14 @@ export default function ProductEditScreen() {
                             disabled={image && imageBack}
                             onChange={uploadFileHandler}
                         ></input>
+
+                        {loadingUpload && <LoadingBox></LoadingBox>}
                     </div>
-                    {loadingUpload && <LoadingBox></LoadingBox>}
                     <div>
                         <label htmlFor='price'>Price</label>
                         <input type='text' id='price'
                             value={price}
                             onChange={(e) => setPrice(e.target.value)} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor='brand'>Brand</label>
-                        <input type='text' id='brand'
-                            value={brand}
-                            onChange={(e) => setBrand(e.target.value)} ></input>
                     </div>
                     <div>
                         <label htmlFor='countInStock'>Count In Stock</label>
@@ -226,18 +223,26 @@ export default function ProductEditScreen() {
                             onChange={(e) => setCountInStock(e.target.value)} ></input>
                     </div>
                     <div>
+                        <label htmlFor='brand'>Raw Descrption</label>
+                        <input type='text' id='brand'
+                            value={brand}
+                            onChange={(e) => setBrand(e.target.value)} ></input>
+                    </div>
+                    <div>
                         <label htmlFor='description'>Description</label>
                         <input type='text' id='description'
                             value={description}
                         ></input>
                     </div>
+                    <MessageBox>Use this tool below to custom your product's description.<br></br>The right side shows what you will see in the browser</MessageBox>
+                    <MarkDownEditor valueChild={handleCallback}></MarkDownEditor>
                     <div>
                         <label htmlFor='color'>Color</label>
                         <input type='text' id='color'
                             value={color}
                             onChange={(e) => setColor(e.target.value)} ></input>
                     </div>
-                    <MarkDownEditor valueChild={handleCallback}></MarkDownEditor>
+
                     <div>
                         <button className="sign-in"> Update This Product </button>
                     </div>

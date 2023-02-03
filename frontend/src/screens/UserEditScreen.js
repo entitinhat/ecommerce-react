@@ -160,11 +160,14 @@ export default function UserEditScreen() {
                     <div>
                         <label htmlFor='isAdmin'>Change To Admin</label>
                         <input type='checkbox' id='isAdmin'
-                            checked={email === 'nhatktvn2001@gmail.com' ? 'true' : isAdmin}
+                            checked={isAdmin}
                             onChange={(e) => {
+                                console.log('isadmin ban dau', isAdmin)
                                 if (email !== userInfo.email && email !== 'nhatktvn2001@gmail.com') {
                                     setIsAdmin(e.target.checked)
+                                    console.log('trang thai adminla', isAdmin)
                                 }
+
                                 else alert('Cant change the current admin state');
                             }
                             }

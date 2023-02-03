@@ -16,10 +16,10 @@ const mdParser = new MarkdownIt(/* Markdown-it options */);
 export default function MarkDownEditor(props) {
 
     function handleEditorChange({ html, text }) {
-        props.valueChild(html);
+        props.valueChild([html, text]);
         console.log('handleEditorChange', html, 'text la:', text);
     }
     return (
-        <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
+        <MdEditor style={{ height: '300px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
     )
 }

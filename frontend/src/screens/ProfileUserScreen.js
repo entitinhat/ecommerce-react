@@ -165,6 +165,7 @@ export default function ProfileUserScreen() {
                                 <img src={profileImage} className="profile-pic" alt=""></img>
                                 <i className="fa fa-pencil-square" aria-hidden="true" ></i>
                                 <input type='file' className="input-file-profile" onChange={uploadFileHandler}></input>
+                                {loadingUpload && <LoadingBox></LoadingBox>}
                             </div>
                             <div>{name}</div>
                             {/* <div>
@@ -173,6 +174,7 @@ export default function ProfileUserScreen() {
                                 ></input>
                             </div> */}
                         </div>
+
 
                         <form className="form" onSubmit={submitFormHandler}>
                             <div>
