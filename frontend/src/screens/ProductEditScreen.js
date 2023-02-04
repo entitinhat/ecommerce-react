@@ -165,6 +165,9 @@ export default function ProductEditScreen() {
     return (
         <div>
             <div>
+                <div>
+                    <Link to="/admin/productlist">Back to List Products</Link>
+                </div>
                 <form className="form" onSubmit={updateProductHandler}>
                     <div>
                         <h1>Edit Product {id}</h1>
