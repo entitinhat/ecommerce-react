@@ -44,7 +44,11 @@ export default function PlaceOrderScreen() {
             body: JSON.stringify({
                 email,
                 cartItemsClone,
-                userInfo
+                userInfo,
+                itemsPrice,
+                shippingPrice,
+                taxPrice,
+                totalPrice
             })
         });
 
@@ -68,7 +72,7 @@ export default function PlaceOrderScreen() {
 
             <div className="placeorder-row">
                 <div className="col-3">
-                    <div className="card-body">
+                    <div className="placeorder-body">
                         <div> <h1> Shipping</h1></div>
                         <div>Name: {shippingAddress.fullName} </div>
                         <div>Address:&nbsp;
@@ -77,11 +81,11 @@ export default function PlaceOrderScreen() {
                             {shippingAddress.postalCode},&nbsp;
                             {shippingAddress.country} </div>
                     </div>
-                    <div className="card-body">
+                    <div className="placeorder-body">
                         <div><h1>Payment</h1></div>
-                        <p><strong>Method</strong>: {paymentMethod}</p>
+                        <div><strong>Method</strong>: {paymentMethod}</div>
                     </div>
-                    <div className="card-body">
+                    <div className="placeorder-body">
                         <div><h1>Order Items</h1></div>
                         <ul>
                             {cartItems.map((item) => (

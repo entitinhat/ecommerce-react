@@ -163,12 +163,11 @@ ul>li {
   flex: 1.5;
 }
 
+
+
 .col-4 {
   flex: 1;
-  margin: 1rem 1rem 1rem 2rem;
-  padding: 2rem;
-  background-color: rgb(234, 240, 239);
-  border-radius: 2rem;
+
 }
 
 .row.center {
@@ -246,6 +245,8 @@ img.cover {
   margin: 1rem;
 }
 
+
+
 .card-body>* {
   margin-bottom: 0.5rem;
 }
@@ -296,6 +297,7 @@ img.cover {
   border-radius: 1rem;
   color: white;
   font-weight: 500;
+  margin-top: 1rem;
   /* border: 0.1rem grey solid; */
 
 }
@@ -465,7 +467,9 @@ label {
 
 /* Shipping Screen */
 
-
+.checkout-steps {
+  margin-bottom: 1rem;
+}
 
 .checkout-steps>div {
   flex: 1;
@@ -490,11 +494,35 @@ label {
   display: flex;
   /* overflow: hidden; */
   align-items: flex-start;
+
 }
+
+
 
 input[type="radio"] {
   width: 2rem;
   height: 2rem;
+}
+
+.placeorder-body div {
+  margin: 1rem 0rem;
+  padding-left: 1rem;
+}
+
+
+
+.placeorder-body {
+  padding: 0.5rem 1rem 1.5rem;
+  background-color: rgba(186, 185, 173, 0.108);
+  border-radius: 1rem;
+  margin: 1rem;
+}
+
+.order-summary-row {
+  margin: 1rem 1rem 1rem 2rem;
+  padding: 2rem;
+  background-color: rgba(186, 185, 173, 0.108);
+  border-radius: 2rem;
 }
 
 .order-summary-row>div {
@@ -689,25 +717,17 @@ div.categories {
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-
-  /* border: 0.1rem solid rgb(61, 168, 79); */
 }
 
 .count-result {
   margin: 0.5rem 0 0.5rem 2rem;
   padding: 0.5rem;
   font-size: 1.8rem;
-
-
 }
 
 .search-products::-webkit-scrollbar {
   display: none;
 }
-
-/* .search-products>div {
-  margin-bottom: 1rem;
-} */
 
 .search-text {
   color: black;
@@ -719,7 +739,6 @@ div.categories {
 .bold-text {
   font-weight: bold;
 }
-
 
 /* Filter Category */
 
@@ -920,4 +939,32 @@ tr {
 .num-review {
   margin-left: 1rem;
   font-family: cursive;
+}
+
+/* .cart-list div:first-child {
+  background-color: green;
+} */
+
+.cart-list div:nth-child(2) {
+  /* background-color: yellow; */
+  width: 25rem;
+}
+
+.cart-list div:nth-child(3) {
+  /* background-color: rgb(0, 102, 255); */
+  width: 3.5rem;
+}
+
+.cart-list div:nth-child(4) {
+  /* background-color: rgb(102, 190, 208); */
+  width: 3rem;
+}
+
+.cart-list div:last-child {
+
+  width: 7rem;
+}
+
+.select-item-tag {
+  min-width: 3.5rem;
 }

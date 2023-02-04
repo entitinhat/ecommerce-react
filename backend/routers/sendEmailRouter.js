@@ -6,12 +6,12 @@ import nodemailer from 'nodemailer'
 const sendEmailRouter = express.Router();
 // send mail
 sendEmailRouter.post("/", (req, res) => {
-    const { email, cartItemsClone, userInfo } = req.body;
+    const { email, cartItemsClone, userInfo, shippingPrice, taxPrice, totalPrice } = req.body;
     const separator = '<hr></hr>';
     const item = cartItemsClone.map((cartItem) => (`${cartItem.qty} * ${cartItem.name}`));
     const newItem = item.join(separator)
     const priceItem = cartItemsClone.map((cartItem) => (cartItem.qty) * (cartItem.price)).join(separator);
-    const totalPriceItem = cartItemsClone.map((cartItem) => (cartItem.qty) * (cartItem.price)).reduce((a, c) => a + c)
+    // const totalPriceItem = cartItemsClone.map((cartItem) => (cartItem.qty) * (cartItem.price)).reduce((a, c) => a + c)
 
     try {
         const transporter = nodemailer.createTransport({
@@ -28,7 +28,7 @@ sendEmailRouter.post("/", (req, res) => {
             subject: "Your order is successful!!!",
             html: `
             <p>Hello <strong>${userInfo.name}<strong>!!!</p>
-            <p>This email is sent to confỉrm that you have successfully order at 4MENS SHOP!<p>
+            <p>This email is sent to confirm that you have successfully order at 4MENS SHOP!<p>
             <h2>Here is your order list</h2>
             <table style=" border: 1px solid;
             text-align: center; padding: 1rem">
@@ -42,11 +42,19 @@ sendEmailRouter.post("/", (req, res) => {
             <tbody>
             <tr>
                     <td style="text-align:left">${newItem}</td>
-                    <td>${priceItem}</td>    
+                    <td style="text-align:right">$${priceItem}</td>    
                 </tr>
                 <tr>
-                    <th>Total Price</th>
-                    <td>${totalPriceItem}</td>
+                    <th style="text-align:left">Shipping:</th>
+                    <td style="text-align:right">$${shippingPrice}</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Tax:</th>
+                    <td style="text-align:right">$${taxPrice}</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Total Price:</th>
+                    <td style="text-align:right">$${totalPrice}</td>
                 </tr>
             </tbody>
             </table>

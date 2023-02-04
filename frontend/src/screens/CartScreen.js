@@ -41,7 +41,7 @@ export default function CartScreen(props) {
                         <ul>
                             {cartItems.map((item) => (
                                 <li key={item.product}>
-                                    <div className="row">
+                                    <div className="row cart-list">
                                         <div>
                                             <img src={item.image} alt={item.name} className="small"></img>
                                         </div>
@@ -49,7 +49,7 @@ export default function CartScreen(props) {
                                             <Link to={`/product/${item.product}`}>{item.name} </Link>
                                         </div>
                                         <div>
-                                            <select value={item.qty}
+                                            <select value={item.qty} className="select-item-tag"
                                                 onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))} >
                                                 {
                                                     [...Array(item.countInStock).keys()].map(
@@ -62,7 +62,7 @@ export default function CartScreen(props) {
                                                 }
                                             </select>
                                         </div>
-                                        <div>{item.price}</div>
+                                        <div>${item.price}</div>
                                         <div>
                                             <button
                                                 type='button'
@@ -77,7 +77,7 @@ export default function CartScreen(props) {
                     }
                 </div>
             </div >
-            <div className="col-4">
+            <div className="col-4 order-summary-row">
                 <h2>
 
                     SubTotal ({cartItems.reduce((a, c) => Number(a) + Number(c.qty), 0)} items) :
