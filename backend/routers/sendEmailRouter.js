@@ -10,7 +10,7 @@ sendEmailRouter.post("/", (req, res) => {
     const separator = '<hr></hr>';
     const item = cartItemsClone.map((cartItem) => (`${cartItem.qty} * ${cartItem.name}`));
     const newItem = item.join(separator)
-    const priceItem = cartItemsClone.map((cartItem) => (cartItem.qty) * (cartItem.price)).join(separator);
+    const priceItem = cartItemsClone.map((cartItem) => `$${cartItem.qty * cartItem.price}`).join(separator);
     // const totalPriceItem = cartItemsClone.map((cartItem) => (cartItem.qty) * (cartItem.price)).reduce((a, c) => a + c)
 
     try {
@@ -42,7 +42,7 @@ sendEmailRouter.post("/", (req, res) => {
             <tbody>
             <tr>
                     <td style="text-align:left">${newItem}</td>
-                    <td style="text-align:right">$${priceItem}</td>    
+                    <td style="text-align:right">${priceItem}</td>    
                 </tr>
                 <tr>
                     <th style="text-align:left">Shipping:</th>

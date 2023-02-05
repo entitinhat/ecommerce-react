@@ -96,6 +96,9 @@ userRouter.put('/:id',
             user.email = req.body.email || user.email;
             user.isAdmin = Boolean(req.body.isAdmin);
             user.profileImage = req.body.profileImage || user.profileImage;
+            if (req.body.password) {
+                user.password = bcrypt.hashSync(req.body.password, 8) || user.password;
+            }
             const updatedUser = await user.save();
             res.send({ message: 'user updated', user: updatedUser })
         }

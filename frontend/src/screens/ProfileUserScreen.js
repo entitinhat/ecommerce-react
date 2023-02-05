@@ -1,4 +1,5 @@
 import axios from 'axios';
+import bcrypt from 'bcryptjs'
 import React, { useEffect, useReducer, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingBox from '../component/LoadingBox';
@@ -45,21 +46,40 @@ export default function ProfileUserScreen() {
 
     const userDetails = useSelector((state) => state.userDetails);
     const { user, loading, error } = userDetails;
-    console.log('user in profile screen', user)
+    console.log(user, 'user in profile screen')
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
-
+    const [enterPassword, setEnterPassword] = useState('');
     const [password, setPassword] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [country, setCountry] = useState('');
 
 
-
     const [profileImage, setProfileImage] = useState('');
     const dispatchh = useDispatch();
+    function reloadPage() {
+        var currentDocumentTimestamp = new Date(performance.timing.domLoading).getTime();
+        // Current Time //
+        var now = Date.now();
+        // Total Process Lenght as Minutes //
+        var tenSec = 20 * 1000;
+        // End Time of Process //
+        var plusTenSec = currentDocumentTimestamp + tenSec;
+        if (now > plusTenSec) {
+            window.location.reload();
+        }
+    }
+    // You can call it in somewhere //
+    reloadPage();
+    let refresh = window.localStorage.getItem('refresh');
+    console.log(refresh);
+    if (refresh === null) {
+        window.location.reload();
+        window.localStorage.setItem('refresh', "1");
+    }
 
 
     const userUpdate = useSelector((state) => state.userUpdate);
@@ -68,7 +88,7 @@ export default function ProfileUserScreen() {
         error: errorUpdate,
         loading: loadingUpdate,
     } = userUpdate;
-
+    // window.location.reload(true)
 
 
     useEffect(() => {
@@ -77,15 +97,19 @@ export default function ProfileUserScreen() {
                 const { data } = await axios.get(`/api/users/${userInfo._id}`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` },
                 });
+
                 setName(data.name);
                 setEmail(data.email);
                 setProfileImage(data.profileImage);
+
                 setIsAdmin(data.isAdmin);
+
                 dispatch({
                     type: 'FETCH_SUCCESS',
                     payload: data,
                 })
                 localStorage.setItem('userInfo', JSON.stringify(data));
+
             }
             catch (err) {
                 dispatch({
@@ -100,11 +124,15 @@ export default function ProfileUserScreen() {
         if (!user) {
             dispatchh({ type: USER_UPDATE_PROFILE_RESET });
             dispatchh(detailsUser(userInfo._id));
+
         } else {
-            setName(user.name);
-            setEmail(user.email);
-            setProfileImage(user.profileImage);
-            setIsAdmin(user.isAdmin);
+            // setName(user.name);
+            // setEmail(user.email);
+            // setProfileImage(user.profileImage);
+
+            // setIsAdmin(user.isAdmin);
+
+
             // setPassword(user.password);
             // setAddress(user.address);
             // setCity(user.city);
@@ -139,9 +167,9 @@ export default function ProfileUserScreen() {
     // console.log("user la", user);
     // console.log("userupdate la", userUpdate);
     console.log(profileImage)
-    console.log(users, 'users la gi')
     console.log(userInfo, 'user info trong profile screen')
     console.log(shippingAddress, 'shipping address trong profile screen')
+    console.log(enterPassword, password, 'enter & password')
     return (
         <div>
             {loading ? (
@@ -200,10 +228,10 @@ export default function ProfileUserScreen() {
                                 <input type='email' id='email' value={email} disabled
                                 />
                             </div>
-                            <div>
+                            {/* <div>
                                 <label htmlFor='name'>Username</label>
                                 <input type='text' id='name' />
-                            </div>
+                            </div> */}
                             <div>
                                 <label htmlFor='fullName'>Full Name</label>
                                 <input type='text' id='fullName' value={name}
@@ -212,6 +240,21 @@ export default function ProfileUserScreen() {
                                 />
                             </div>
                             <div>
+                                <label htmlFor='enter-password'>Enter your Password</label>
+                                <input type='password' id='enter-password'
+                                    placeholder='Enter your password'
+                                    onChange={(e) => setEnterPassword(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor='password'>New Password</label>
+                                <input type='password' id='password'
+                                    disabled={!bcrypt.compareSync(enterPassword, user.password)}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </div>
+                            {/* <div>
                                 <label htmlFor='address'>Address</label>
                                 <input type='text' id='address'
                                     value={shippingAddress.address}
@@ -231,7 +274,7 @@ export default function ProfileUserScreen() {
                                     value={shippingAddress.country}
                                     placeholder='Enter your country'
                                     onChange={(e) => setCountry(e.target.value)} />
-                            </div>
+                            </div> */}
                             <div>
                                 <button className="sign-in"> Update </button>
                             </div>

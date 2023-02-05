@@ -94,6 +94,7 @@ a.brand {
   color: #ffffff;
   font-size: 3rem;
   font-weight: bold;
+  padding-left: 2rem;
 }
 
 .row {
@@ -257,7 +258,11 @@ img.cover {
 }
 
 .price {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(243, 34, 34);
+  margin-bottom: 1rem;
 }
 
 /* Rating */
@@ -713,7 +718,7 @@ div.categories {
   padding: 0.8rem;
   background-color: rgb(222, 239, 241, 50%);
   border-radius: 2rem;
-  height: 80rem;
+  height: 62rem;
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;

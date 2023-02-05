@@ -55,7 +55,7 @@ const reducer = (state, action) => {
 
 function App(props) {
 
-  // const [{ loading, users, error, nameUpdate, emailUpdate, successDelelte }, dispatch] = useReducer(reducer, {
+  // const [{ loading, error, nameUpdate, emailUpdate, successDelelte }, dispatch] = useReducer(reducer, {
   //   loading: true,
   //   error: ''
   // })
@@ -163,9 +163,9 @@ function App(props) {
 
           <header className="row">
             <div>
-              <button className="sidebar-btn" onClick={() => setSideBar(!sideBar)}>
+              {/* <button className="sidebar-btn" onClick={() => setSideBar(!sideBar)}>
                 <i className="fa fa-bars"></i>
-              </button>
+              </button> */}
               <Link className="brand" to="/">4Mens</Link>
             </div>
 
