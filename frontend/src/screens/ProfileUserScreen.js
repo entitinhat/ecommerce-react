@@ -251,6 +251,7 @@ export default function ProfileUserScreen() {
                                 <input type='password' id='password'
                                     disabled={!bcrypt.compareSync(enterPassword, user.password)}
                                     value={password}
+                                    placeholder={bcrypt.compareSync(enterPassword, user.password) ? 'Type your new password' : 'Type your current password to update new password'}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
