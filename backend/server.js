@@ -42,8 +42,10 @@ app.use('/api/users', userRouter);
 app.use('/api/send', sendEmailRouter);
 
 app.use('/api/upload', uploadRouter);
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, '/frontend/build')));
 app.get('*', (req, res) =>
-    res.sendFile(path.join(__dirname, '/frontend/public/index.html'))
+    res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
 );
 
 app.listen(5000, () => {
