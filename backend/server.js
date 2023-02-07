@@ -43,13 +43,14 @@ app.use('/api/users', userRouter);
 app.use('/api/send', sendEmailRouter);
 
 app.use('/api/upload', uploadRouter);
+app.use('/', (req, res) => {
+    res.send('hello')
+})
 // const __dirname = path.resolve();
 // app.use(express.static(path.join(__dirname, '/frontend/build')));
 // app.get('*', (req, res) =>
 //     res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
 // );
-
-
 
 const PORT = process.env.PORT || 5000;
 
