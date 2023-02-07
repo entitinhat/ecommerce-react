@@ -8,6 +8,8 @@ import MessageBox from '../component/MessageBox';
 import Product from '../component/Product';
 import { USER_UPDATE_PROFILE_SUCCESS } from '../constants/userConstants';
 
+import { BASE_URL } from '../helper.js';
+
 const reducer = (state, action) => {
     switch (action.type) {
         case 'FETCH_REQUEST':
@@ -97,7 +99,7 @@ export default function SearchScreen(props) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get(`https://fourmens-ecommerce-website.onrender.com/api/products/search?query=${query}&type=${type}&category=${category}&price=${price}&color=${color}&order=${order}`);  // 13.1 Part 2
+                const { data } = await axios.get(`${BASE_URL}/api/products/search?query=${query}&type=${type}&category=${category}&price=${price}&color=${color}&order=${order}`);  // 13.1 Part 2
                 dispatch({
                     type: 'FETCH_SUCCESS',
                     payload: data
@@ -118,7 +120,7 @@ export default function SearchScreen(props) {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const { data } = await axios.get('https://fourmens-ecommerce-website.onrender.com/api/products/categories');
+                const { data } = await axios.get(`${BASE_URL}/api/products/categories`);
                 setCategories(data);  // ["Pants","Shirts"]
             }
             catch (error) {
@@ -135,7 +137,7 @@ export default function SearchScreen(props) {
         const filterPrice = filter.price || price;
         const filterColor = filter.color || color;
         const sortOrder = filter.order || order  // 13.1 Part 3
-        return `https://fourmens-ecommerce-website.onrender.com/search?query=${filterQuery}&type=${filterType}&category=${filterCategory}&price=${filterPrice}&color=${filterColor}&order=${sortOrder}`// 13.1 Part 4
+        return `/search?query=${filterQuery}&type=${filterType}&category=${filterCategory}&price=${filterPrice}&color=${filterColor}&order=${sortOrder}`// 13.1 Part 4
     }
 
     // const hideShowFilter = () => {
