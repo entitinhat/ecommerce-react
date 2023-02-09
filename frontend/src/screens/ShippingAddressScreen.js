@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router';
 import CheckoutSteps from '../component/CheckoutSteps'
 import { saveShippingAddress } from '../constants/cartActions';
+import { BASE_URL } from '../helper.js';
 
 export default function ShippingAddressScreen(props) {
     const cart = useSelector((state) => state.cart);
@@ -30,7 +31,7 @@ export default function ShippingAddressScreen(props) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get(`/api/users/${userInfo._id}`, {
+                const { data } = await axios.get(`${BASE_URL}/api/users/${userInfo._id}`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` },
                 });
                 setFullName(data.name);

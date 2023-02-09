@@ -7,6 +7,7 @@ import MessageBox from '../component/MessageBox';
 import Rating from '../component/Rating'
 import { listDetail } from '../constants/productActions';
 import { PRODUCT_LIST_FAIL } from '../constants/productConstants';
+import { BASE_URL } from '../helper.js';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -65,7 +66,7 @@ export default function ProductScreen(props) {
     const submitFormReview = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post(`/api/products/${product._id}/reviews`, {
+            const { data } = await axios.post(`${BASE_URL}/api/products/${product._id}/reviews`, {
                 name: userInfo.name, comment, rating
             }, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }

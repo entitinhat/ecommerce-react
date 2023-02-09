@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import EmailSending from '../component/EmailSending.js'
 import { CART_CLEAR } from '../constants/cartConstants';
-
+import { BASE_URL } from '../helper.js';
 
 
 export default function PlaceOrderScreen() {
@@ -36,7 +36,7 @@ export default function PlaceOrderScreen() {
         alert('Order Successfully! You can check your email to see your orders. Thanks for choosing our shop! Have A Nice Day ^^ ');
         navigate('/home');
         dispatch({ type: CART_CLEAR });
-        const res = await fetch('/api/send', {
+        const res = await fetch(`${BASE_URL}/api/send`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

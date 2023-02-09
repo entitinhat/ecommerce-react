@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from 'react-router'
 import LoadingBox from '../component/LoadingBox'
 import MessageBox from '../component/MessageBox'
 import { editUser } from '../constants/userActions'
-
+import { BASE_URL } from '../helper.js'
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -53,7 +53,7 @@ export default function UserListScreen() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get('/api/users', {
+                const { data } = await axios.get(`${BASE_URL}/api/users`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` }
                 });
                 dispatch({
@@ -104,7 +104,7 @@ export default function UserListScreen() {
 
             dispatch({ type: 'DELETE_REQUEST' });
             try {
-                await axios.delete(`/api/users/${user._id}`,
+                await axios.delete(`${BASE_URL}/api/users/${user._id}`,
                     {
                         headers: { Authorization: `Bearer ${userInfo.token}` },
                     }

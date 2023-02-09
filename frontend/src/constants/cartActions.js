@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT_METHOD, CART_SAVE_SHIPPING_ADDRESS } from './cartConstants';
+import { BASE_URL } from '../helper.js';
+
 
 export const savePaymentMethod = (data) => (dispatch) => {
     dispatch({
@@ -18,7 +20,7 @@ export const saveShippingAddress = (data) => (dispatch) => {
 }
 
 export const addToCart = (productID, qty) => async (dispatch, getState) => {
-    const { data } = await axios.get(`/api/products/${productID}`);
+    const { data } = await axios.get(`${BASE_URL}/api/products/${productID}`);
     dispatch({
         type: CART_ADD_ITEM,
         payload: {
