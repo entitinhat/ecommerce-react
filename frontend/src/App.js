@@ -163,7 +163,7 @@ function App(props) {
         }>
 
           <header className="row">
-            <div>
+            <div className="brand-wrapper">
               {/* <button className="sidebar-btn" onClick={() => setSideBar(!sideBar)}>
                 <i className="fa fa-bars"></i>
               </button> */}
