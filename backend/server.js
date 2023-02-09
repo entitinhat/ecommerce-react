@@ -8,11 +8,23 @@ import productRouter from './routers/productRouter.js';
 import uploadRouter from './routers/uploadRouter.js';
 import searchRouter from './routers/searchRouter.js';
 import sendEmailRouter from './routers/sendEmailRouter.js';
+import cors from 'cors'
 
 dotenv.config();
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+// const corsConfig = {
+//     origin: true,
+//     methods: 
+//     credentials: true,
+//     maxAge: 3600
+//   };
+
+
 
 mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
