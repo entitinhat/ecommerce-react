@@ -32,6 +32,7 @@ import LoadingBox from './component/LoadingBox';
 import MessageBox from './component/MessageBox';
 import { USER_UPDATE_PROFILE_RESET } from './constants/userConstants';
 import { ToastContainer } from 'react-toastify';
+import { BASE_URL } from './helper.js';
 
 
 const reducer = (state, action) => {
@@ -82,7 +83,7 @@ function App(props) {
 
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`/api/users/${userInfo._id}`, {
+        const { data } = await axios.get(`${BASE_URL}/api/users/${userInfo._id}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` }
         });
         setNameUpdate(data.name)
@@ -185,8 +186,6 @@ function App(props) {
                   <Link to="#" className='row center'>
                     {nameUpdatee}
                     <img src={profileImage} alt='' className="profile-pic-mini"></img>
-                    {/* <img src={} alt=""></img> */}
-                    {/* <i className="fa fa-caret-down"></i> */}
                   </Link>
                   <ul className="dropdown-content">
                     <li><Link to="/home">Home</Link></li>
