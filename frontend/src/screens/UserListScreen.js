@@ -157,7 +157,7 @@ export default function UserListScreen() {
                             <MessageBox variant="danger"> {error} </MessageBox>
                         ) : (
                             <>
-                                <div className="row center admin-product-watchlist">
+                                <div className="center admin-user-watchlist admin-product-watchlist">
                                     <div>
                                         <h2>Total Users</h2>
                                         <p>{users.length}</p>

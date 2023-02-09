@@ -871,20 +871,24 @@ tr {
 
 /* product list */
 
-.row.admin-product-watchlist {
+.admin-product-watchlist {
   background-color: rgb(255, 255, 255);
   padding: 0 2rem;
   justify-content: space-around;
   margin: 1rem 15rem 2rem 15rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 
 
-.row.admin-product-watchlist h2 {
+.admin-product-watchlist h2 {
   margin: 0;
 }
 
-.row.admin-product-watchlist p {
+.admin-product-watchlist p {
   font-size: 3rem;
   font-weight: lighter;
   margin: 0;
@@ -975,6 +979,10 @@ tr {
   min-width: 3.5rem;
 }
 
+.admin-user-watchlist {
+  justify-content: space-evenly;
+}
+
 @media only screen and (max-width: 720px) {
 
   header.row {
@@ -1051,6 +1059,15 @@ tr {
 
   .cart-list div:nth-child(5) button {
     font-size: 1.5rem;
+  }
+
+  /* admin productlist */
+  .admin-product-watchlist {
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 1rem;
   }
 
 

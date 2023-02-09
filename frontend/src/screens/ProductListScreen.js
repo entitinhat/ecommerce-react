@@ -194,7 +194,7 @@ export default function ProductListScreen() {
                     <MessageBox variant="danger"> {error} </MessageBox>
                 ) : (
                     <>
-                        <div className="row admin-product-watchlist">
+                        <div className="admin-product-watchlist">
                             <div>
                                 <h2>Total Products</h2>
                                 <p>{products.length}</p>
