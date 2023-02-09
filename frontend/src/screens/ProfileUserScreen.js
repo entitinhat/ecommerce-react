@@ -61,26 +61,26 @@ export default function ProfileUserScreen() {
 
     const [profileImage, setProfileImage] = useState('');
     const dispatchh = useDispatch();
-    function reloadPage() {
-        var currentDocumentTimestamp = new Date(performance.timing.domLoading).getTime();
-        // Current Time //
-        var now = Date.now();
-        // Total Process Lenght as Minutes //
-        var tenSec = 20 * 1000;
-        // End Time of Process //
-        var plusTenSec = currentDocumentTimestamp + tenSec;
-        if (now > plusTenSec) {
-            window.location.reload();
-        }
-    }
-    // You can call it in somewhere //
-    reloadPage();
-    let refresh = window.localStorage.getItem('refresh');
-    console.log(refresh);
-    if (refresh === null) {
-        window.location.reload();
-        window.localStorage.setItem('refresh', "1");
-    }
+    // function reloadPage() {
+    //     var currentDocumentTimestamp = new Date(performance.timing.domLoading).getTime();
+    //     // Current Time //
+    //     var now = Date.now();
+    //     // Total Process Lenght as Minutes //
+    //     var tenSec = 20 * 1000;
+    //     // End Time of Process //
+    //     var plusTenSec = currentDocumentTimestamp + tenSec;
+    //     if (now > plusTenSec) {
+    //         window.location.reload();
+    //     }
+    // }
+    // // You can call it in somewhere //
+    // reloadPage();
+    // let refresh = window.localStorage.getItem('refresh');
+    // console.log(refresh);
+    // if (refresh === null) {
+    //     window.location.reload();
+    //     window.localStorage.setItem('refresh', "1");
+    // }
 
 
     const userUpdate = useSelector((state) => state.userUpdate);
@@ -240,7 +240,7 @@ export default function ProfileUserScreen() {
                                     onChange={(e) => setName(e.target.value)}
                                 />
                             </div>
-                            <div>
+                            {/* <div>
                                 <label htmlFor='enter-password'>Enter your Password</label>
                                 <input type='password' id='enter-password'
                                     placeholder='Enter your password'
@@ -255,7 +255,7 @@ export default function ProfileUserScreen() {
                                     placeholder={bcrypt.compareSync(enterPassword, user.password) ? 'Type your new password' : 'Type your current password to update new password'}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
-                            </div>
+                            </div> */}
                             {/* <div>
                                 <label htmlFor='address'>Address</label>
                                 <input type='text' id='address'
