@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from 'react-router'
 
 import LoadingBox from '../component/LoadingBox'
 import MessageBox from '../component/MessageBox'
-
+import { BASE_URL } from '../helper.js'
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -77,7 +77,7 @@ export default function ProductListScreen() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get('/api/products', {
+                const { data } = await axios.get(`${BASE_URL}/api/products`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` },
                 });
                 // const { dataCategories } = await axios.get('/api/products/categories');
@@ -102,7 +102,7 @@ export default function ProductListScreen() {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const { data } = await axios.get('/api/products/categories');
+                const { data } = await axios.get(`${BASE_URL}/api/products/categories`);
                 // dispatch({
                 //     type: 'FETCH_CATEGORIES_SUCCESS',
                 //     payload: data
@@ -121,7 +121,7 @@ export default function ProductListScreen() {
         if (window.confirm('Are you sure to create?')) {
             dispatch({ type: 'CREATE_REQUEST' });
             try {
-                const { data } = await axios.post('/api/products',
+                const { data } = await axios.post(`${BASE_URL}/api/products`,
                     {},
                     {
                         headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -146,7 +146,7 @@ export default function ProductListScreen() {
             console.log(product._id)
             dispatch({ type: 'DELETE_REQUEST' });
             try {
-                await axios.delete(`/api/products/${product._id}`,
+                await axios.delete(`${BASE_URL}/api/products/${product._id}`,
                     {
                         headers: { Authorization: `Bearer ${userInfo.token}` },
                     }
@@ -201,7 +201,7 @@ export default function ProductListScreen() {
                             </div>
                             <div>
                                 <h2>Out Of Stock</h2>
-                                <p>{products.filter((a) => a.countInStock === 0).length}</p>
+                                <p>{products.reduce((a, c) => (c.countInStock === 0 ? a + 1 : a), 0)}</p>
                             </div>
                             <div>
                                 <h2>Total Items</h2>
