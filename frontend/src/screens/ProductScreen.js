@@ -107,12 +107,12 @@ export default function ProductScreen(props) {
 
                     <div className="row-image">
                         <div className="col-2 row-image">
-                            <div>
+                            <div className="large-wrapper">
                                 <img className="large"
                                     src={product.image} alt={product.name}>
                                 </img>
                             </div>
-                            <div>
+                            <div className="large-wrapper">
                                 <img className="large"
                                     src={product.imageBack} alt={product.name}>
                                 </img>
