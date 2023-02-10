@@ -31,6 +31,9 @@ export default function CartScreen(props) {
     }
     return (
         <>
+            <div>
+                <Link to="/">Continue Shopping</Link>
+            </div>
             <div className="row-image">
                 < div className="col-3" >
                     <h1> Shopping Cart </h1>

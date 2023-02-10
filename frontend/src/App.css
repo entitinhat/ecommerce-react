@@ -1005,6 +1005,14 @@ tr {
     width: 100%;
   }
 
+  .testdropdown {
+    font-size: 1.5rem;
+  }
+
+  .badge {
+    font-size: 1.2rem;
+  }
+
   /* Search Screen */
   .placeorder-row {
     display: block;

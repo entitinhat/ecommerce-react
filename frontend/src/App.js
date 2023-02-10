@@ -175,7 +175,7 @@ function App(props) {
             <div className='testdropdown'>
               <Link to="/cart">
                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                My Cart
+                Cart
                 {cartItems.length > 0 && (
                   <span className="badge">{cartItems.length}</span>
                 )}

@@ -94,7 +94,11 @@ export default function ProductScreen(props) {
     if (!loading) {
         console.log(productDetail)
         return (
+
             <>
+                <div>
+                    <Link to="/">Back to HomePage</Link>
+                </div>
                 <div>
                     {/* {loading ? (
                 <LoadingBox></LoadingBox>
