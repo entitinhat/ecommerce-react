@@ -137,7 +137,7 @@ export default function SearchScreen(props) {
         const filterPrice = filter.price || price;
         const filterColor = filter.color || color;
         const sortOrder = filter.order || order  // 13.1 Part 3
-        return `${BASE_URL}/search?query=${filterQuery}&type=${filterType}&category=${filterCategory}&price=${filterPrice}&color=${filterColor}&order=${sortOrder}`// 13.1 Part 4
+        return `/search?query=${filterQuery}&type=${filterType}&category=${filterCategory}&price=${filterPrice}&color=${filterColor}&order=${sortOrder}`// 13.1 Part 4
     }
 
     // const hideShowFilter = () => {
