@@ -47,7 +47,7 @@ export default function ProfileUserScreen() {
 
     const userDetails = useSelector((state) => state.userDetails);
     const { user, loading, error } = userDetails;
-    console.log(user, 'user in profile screen')
+
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -165,12 +165,8 @@ export default function ProfileUserScreen() {
             dispatch({ type: 'UPLOAD_FAIL', payload: err.message });
         }
     };
-    // console.log("user la", user);
-    // console.log("userupdate la", userUpdate);
-    console.log(profileImage)
-    console.log(userInfo, 'user info trong profile screen')
-    console.log(shippingAddress, 'shipping address trong profile screen')
-    console.log(enterPassword, password, 'enter & password')
+
+
     return (
         <div>
             {loading ? (

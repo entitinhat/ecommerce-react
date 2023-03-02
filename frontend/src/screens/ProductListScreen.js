@@ -143,7 +143,7 @@ export default function ProductListScreen() {
     }
     const deleteHandler = async (product) => {
         if (window.confirm('Are you sure to delete this product?')) {
-            console.log(product._id)
+
             dispatch({ type: 'DELETE_REQUEST' });
             try {
                 await axios.delete(`${BASE_URL}/api/products/${product._id}`,

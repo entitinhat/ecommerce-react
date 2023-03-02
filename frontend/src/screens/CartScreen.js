@@ -29,74 +29,81 @@ export default function CartScreen(props) {
     const checkoutHandler = () => {
         navigate('/signin?redirect=shipping');
     }
+
     return (
         <>
+            {/* {loading ? (
+                <LoadingBox></LoadingBox>
+            ) : ( */}
             <div>
-                <Link to="/">Continue Shopping</Link>
-            </div>
-            <div className="row-image">
-                < div className="col-3" >
-                    <h1> Shopping Cart </h1>
-                    <div>
-                        {cartItems.length === 0 ? (
-                            <MessageBox>
-                                Cart is empty  <Link to="/"> Go Shopping </Link>
-                            </MessageBox>
-                        ) : (
-                            <ul>
-                                {cartItems.map((item) => (
-                                    <li key={item.product}>
-                                        <div className="row cart-list">
-                                            <div>
-                                                <img src={item.image} alt={item.name} className="small"></img>
-                                            </div>
-                                            <div>
-                                                <Link to={`/product/${item.product}`}>{item.name} </Link>
-                                            </div>
-                                            <div>
-                                                <select value={item.qty} className="select-item-tag"
-                                                    onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))} >
-                                                    {
-                                                        [...Array(item.countInStock).keys()].map(
-                                                            (x) => (
-                                                                <option key={x + 1} value={x + 1}>
-                                                                    {x + 1}
-                                                                </option>
+                <div>
+                    <Link to="/">Continue Shopping</Link>
+                </div>
+                <div className="row-image">
+                    < div className="col-3" >
+                        <h1> Shopping Cart </h1>
+                        <div>
+                            {cartItems.length === 0 ? (
+                                <MessageBox>
+                                    Cart is empty  <Link to="/"> Go Shopping </Link>
+                                </MessageBox>
+                            ) : (
+                                <ul>
+                                    {cartItems.map((item) => (
+                                        <li key={item.product}>
+                                            <div className="row cart-list">
+                                                <div>
+                                                    <img src={item.image} alt={item.name} className="small"></img>
+                                                </div>
+                                                <div>
+                                                    <Link to={`/product/${item.product}`}>{item.name} </Link>
+                                                </div>
+                                                <div>
+                                                    <select value={item.qty} className="select-item-tag"
+                                                        onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))} >
+                                                        {
+                                                            [...Array(item.countInStock).keys()].map(
+                                                                (x) => (
+                                                                    <option key={x + 1} value={x + 1}>
+                                                                        {x + 1}
+                                                                    </option>
+                                                                )
                                                             )
-                                                        )
-                                                    }
-                                                </select>
-                                            </div>
-                                            <div>${item.price}</div>
-                                            <div>
-                                                <button
-                                                    type='button'
-                                                    onClick={() => removeFromCartHandler(item.product)}>Delete</button>
-                                            </div>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div>${item.price}</div>
+                                                <div>
+                                                    <button
+                                                        type='button'
+                                                        className="action-btn delete-btn"
+                                                        onClick={() => removeFromCartHandler(item.product)}>Delete</button>
+                                                </div>
 
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        )
-                        }
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )
+                            }
+                        </div>
+                    </div >
+                    <div className="col-4 order-summary-row">
+                        <h2>
+
+                            SubTotal ({cartItems.reduce((a, c) => Number(a) + Number(c.qty), 0)} items) :
+                            ${cartItems.reduce((a, c) => Number(a) + Number(c.price) * Number(c.qty), 0)}
+                        </h2>
+                        <div>
+                            <button type='button' onClick={checkoutHandler} className="checkout-btn"
+                                disabled={cartItems.length === 0}>
+                                Proceed To Checkout
+                            </button>
+                        </div>
                     </div>
                 </div >
-                <div className="col-4 order-summary-row">
-                    <h2>
-
-                        SubTotal ({cartItems.reduce((a, c) => Number(a) + Number(c.qty), 0)} items) :
-                        ${cartItems.reduce((a, c) => Number(a) + Number(c.price) * Number(c.qty), 0)}
-                    </h2>
-                    <div>
-                        <button type='button' onClick={checkoutHandler} className="checkout-btn"
-                            disabled={cartItems.length === 0}>
-                            Proceed To Checkout
-                        </button>
-                    </div>
-                </div>
-            </div >
-
+            </div>
+            {/* )} */}
         </>
     )
 }

@@ -15,10 +15,7 @@ export default function PlaceOrderScreen() {
     const { shippingAddress, paymentMethod, cartItems } = cart;
     console.log(cartItems, 'cartItems in place order screen')
     const cartItemsClone = cartItems;
-    // console.log(cartItemsClone[0].name, 'cartItems clone')
-    // cartItemsClone.map((cartItem)=> {
 
-    // })
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     console.log(userInfo, 'userInfo trong placeorder')

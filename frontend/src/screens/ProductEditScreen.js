@@ -64,7 +64,7 @@ export default function ProductEditScreen() {
     const userSignin = useSelector(state => state.userSignin);
     const navigate = useNavigate();
     const { userInfo } = userSignin;
-    console.log(id);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -92,7 +92,7 @@ export default function ProductEditScreen() {
         }
         fetchData();
     }, [])
-    console.log(type, 'tye la');
+
     const updateProductHandler = async (e) => {
         e.preventDefault();
         dispatch({

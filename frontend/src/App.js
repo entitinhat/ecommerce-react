@@ -72,13 +72,11 @@ function App(props) {
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
-  // const dispatch = useDispatch();
+
 
   const [nameUpdatee, setNameUpdate] = useState('');
   const [profileImage, setProfileImage] = useState('');
-  // const [userss, setUserss] = useState({})
 
-  // console.log(loading)
   useEffect(() => {
 
     const fetchData = async () => {
@@ -104,34 +102,7 @@ function App(props) {
     fetchData();
 
   }, [userInfo])
-  // const namee = user.name;
-  console.log(user, 'user in userDetails in app.js')
-  // console.log(nameUpdate, 'user name update in backend')
-  // console.log(users, 'user backend in app.js')
 
-
-
-  // useEffect(() => {
-  //   if (!user) {
-  //     dispatch({ type: USER_UPDATE_PROFILE_RESET });
-  //     dispatch(detailsUser(userInfo._id));
-  //   } else {
-  //     setName(user.name);
-
-  //     // setPassword(user.password);
-  //     // setAddress(user.address);
-  //     // setCity(user.city);
-  //     // setCountry(user.country);
-  //   }
-
-  // }, [dispatch, userInfo, user]);
-  // useEffect(() => {
-  //   let api = `/api/users/${userInfo._id}`;
-  //   fetch(api)
-  //     .then((response) => response.json())
-  //   // .then((datas) => setUserss(datas))
-  // }, [])
-  console.log(userInfo, 'hook users')
 
   const signOutHandler = () => {
     dispatch(signout());
@@ -139,14 +110,7 @@ function App(props) {
   const viewProfileHandler = () => {
 
   }
-  // const searchSubmitHandler = (e) => {
-  //   e.preventDefault();
-  //   navigate(`/search/hello`);
-  // }
-  console.log('user in app.js', user);
-  console.log('userInfo in app.js', userInfo)
-  console.log('profile img', profileImage)
-  // console.log(users, 'user la ig')
+
   return (
     <>
       {/* {loading ? (
@@ -155,7 +119,7 @@ function App(props) {
         <MessageBox variant="danger"> {error} </MessageBox>
       ) : ( */}
       <BrowserRouter>
-        {/* <ToastContainer /> */}
+
         <div className={
           !sideBar
             ? "container"
@@ -164,9 +128,7 @@ function App(props) {
 
           <header className="row">
             <div className="brand-wrapper">
-              {/* <button className="sidebar-btn" onClick={() => setSideBar(!sideBar)}>
-                <i className="fa fa-bars"></i>
-              </button> */}
+
               <Link className="brand" to="/">4Mens</Link>
             </div>
 

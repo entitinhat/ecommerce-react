@@ -9,9 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Navigate, useNavigate } from 'react-router';
 
 export default function HomeScreen() {
-    // const [products, setProducts] = useState([]);
-    // const [loading, setLoading] = useState(false);
-    // const [error, setError] = useState(false);
+
     const dispatch = useDispatch();
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;

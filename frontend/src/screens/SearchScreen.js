@@ -95,7 +95,7 @@ export default function SearchScreen(props) {
             loading: true,
             error: ''
         })
-    console.log('test products la', Array.isArray(products))
+
     useEffect(() => {
         const fetchData = async () => {
             try {
