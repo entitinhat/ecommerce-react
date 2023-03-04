@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router';
 import CheckoutSteps from '../component/CheckoutSteps'
 import { saveShippingAddress } from '../constants/cartActions';
+import { BASE_URL } from '../helper.js';
 
 export default function ShippingAddressScreen(props) {
     const cart = useSelector((state) => state.cart);
@@ -17,6 +19,8 @@ export default function ShippingAddressScreen(props) {
     const [city, setCity] = useState(shippingAddress.city);
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
     const [country, setCountry] = useState(shippingAddress.country);
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const submitShippingHandler = (e) => {
@@ -24,7 +28,29 @@ export default function ShippingAddressScreen(props) {
         dispatch(saveShippingAddress({ fullName, address, city, postalCode, country }));
         navigate('/payment');
     }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await axios.get(`${BASE_URL}/api/users/${userInfo._id}`, {
+                    headers: { Authorization: `Bearer ${userInfo.token}` },
+                });
+                setFullName(data.name);
+                dispatch({
+                    type: 'FETCH_SUCCESS',
+                    payload: data,
+                })
+                localStorage.setItem('userInfo', JSON.stringify(data));
+            }
+            catch (err) {
+                dispatch({
+                    type: 'FETCH_FAIL'
+                })
+            }
+        }
+        fetchData();
+    }, [])
     console.log(shippingAddress, 'shipiing address trong shipping screen')
+
     return (
         <div>
             <CheckoutSteps step1 step2></CheckoutSteps>
@@ -34,7 +60,7 @@ export default function ShippingAddressScreen(props) {
                 </div>
                 <div>
                     <label htmlFor='fullName'>Full Name</label>
-                    <input type='text' id='fullName' value={fullName} placeholder='Enter your full name' required onChange={(e) => setFullName(e.target.value)}></input>
+                    <input disabled type='text' id='fullName' value={fullName} placeholder='Enter your full name' required onChange={(e) => setFullName(e.target.value)}></input>
                 </div>
                 <div>
                     <label htmlFor='address'>Address</label>

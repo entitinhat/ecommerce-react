@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import LoadingBox from '../component/LoadingBox';
 import MarkDownEditor from '../component/MarkDownEditor';
 import MessageBox from '../component/MessageBox';
+import { BASE_URL } from '../helper.js';
 
 
 const reducer = (state, action) => {
@@ -63,11 +64,11 @@ export default function ProductEditScreen() {
     const userSignin = useSelector(state => state.userSignin);
     const navigate = useNavigate();
     const { userInfo } = userSignin;
-    console.log(id);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get(`/api/products/${id}`);
+                const { data } = await axios.get(`${BASE_URL}/api/products/${id}`);
                 setName(data.name);
                 setCategory(data.category);
                 setImage(data.image);
@@ -91,14 +92,14 @@ export default function ProductEditScreen() {
         }
         fetchData();
     }, [])
-    console.log(type, 'tye la');
+
     const updateProductHandler = async (e) => {
         e.preventDefault();
         dispatch({
             type: 'UPDATE_REQUEST'
         })
         try {
-            await axios.put(`/api/products/${id}`,
+            await axios.put(`${BASE_URL}/api/products/${id}`,
                 {
                     _id: id,
                     name,
@@ -134,7 +135,7 @@ export default function ProductEditScreen() {
         bodyFormData.append('file', file);
         try {
             dispatch({ type: 'UPLOAD_REQUEST' });
-            const { data } = await axios.post('/api/upload', bodyFormData, {
+            const { data } = await axios.post(`${BASE_URL}/api/upload`, bodyFormData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     authorization: `Bearer ${userInfo.token}`,
@@ -163,95 +164,97 @@ export default function ProductEditScreen() {
         setBrand(childData[1]);
     }
     return (
+
         <div>
             <div>
-                <form className="form" onSubmit={updateProductHandler}>
-                    <div>
-                        <h1>Edit Product {id}</h1>
-                    </div>
-                    <div>
-                        <label htmlFor='name'>Name</label>
-                        <input type='text' id='name'
-                            value={name}
-                            required
-                            onChange={(e) => setName(e.target.value)} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor='category'>Category</label>
-                        <input type='text' id='category'
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor='type'>Type</label>
-                        <input type='text' id='type'
-                            value={type}
-                            onChange={(e) => setType(e.target.value)}
-                        ></input>
-                    </div>
-                    <div>
-                        <label htmlFor='image'>Image</label>
-                        <input type='text' id='image'
-                            value={image}
-                            onChange={(e) => setImage(e.target.value)} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor='imageBack'>Image Back</label>
-                        <input type='text' id='imageBack'
-                            value={imageBack}
-                            onChange={(e) => setImageBack(e.target.value)} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor='imageFile'>Image File</label>
-                        <input type='file' id='imageFile'
-                            disabled={image && imageBack}
-                            onChange={uploadFileHandler}
-                        ></input>
-
-                        {loadingUpload && <LoadingBox></LoadingBox>}
-                    </div>
-                    <div>
-                        <label htmlFor='price'>Price</label>
-                        <input type='text' id='price'
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor='countInStock'>Count In Stock</label>
-                        <input type='text' id='countInStock'
-                            value={countInStock}
-                            onChange={(e) => setCountInStock(e.target.value)} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor='brand'>Raw Descrption</label>
-                        <input type='text' id='brand'
-                            value={brand}
-                            onChange={(e) => setBrand(e.target.value)} ></input>
-                    </div>
-                    <div>
-                        <label htmlFor='description'>Description</label>
-                        <input type='text' id='description'
-                            value={description}
-                        ></input>
-                    </div>
-                    <MessageBox>Use this tool below to custom your product's description.<br></br>The right side shows what you will see in the browser</MessageBox>
-                    <MarkDownEditor valueChild={handleCallback}></MarkDownEditor>
-                    <div>
-                        <label htmlFor='color'>Color</label>
-                        <input type='text' id='color'
-                            value={color}
-                            onChange={(e) => setColor(e.target.value)} ></input>
-                    </div>
-
-                    <div>
-                        <button className="sign-in"> Update This Product </button>
-                    </div>
-
-
-                </form>
+                <Link to="/admin/productlist">Back to List Products</Link>
             </div>
+            <form className="form" onSubmit={updateProductHandler}>
+                <div>
+                    <h1>Edit Product {id}</h1>
+                </div>
+                <div>
+                    <label htmlFor='name'>Name</label>
+                    <input type='text' id='name'
+                        value={name}
+                        required
+                        onChange={(e) => setName(e.target.value)} ></input>
+                </div>
+                <div>
+                    <label htmlFor='category'>Category</label>
+                    <input type='text' id='category'
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)} ></input>
+                </div>
+                <div>
+                    <label htmlFor='type'>Type</label>
+                    <input type='text' id='type'
+                        value={type}
+                        onChange={(e) => setType(e.target.value)}
+                    ></input>
+                </div>
+                <div>
+                    <label htmlFor='image'>Image</label>
+                    <input type='text' id='image'
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)} ></input>
+                </div>
+                <div>
+                    <label htmlFor='imageBack'>Image Back</label>
+                    <input type='text' id='imageBack'
+                        value={imageBack}
+                        onChange={(e) => setImageBack(e.target.value)} ></input>
+                </div>
+                <div>
+                    <label htmlFor='imageFile'>Image File</label>
+                    <input type='file' id='imageFile'
+                        disabled={image && imageBack}
+                        onChange={uploadFileHandler}
+                    ></input>
+
+                    {loadingUpload && <LoadingBox></LoadingBox>}
+                </div>
+                <div>
+                    <label htmlFor='price'>Price</label>
+                    <input type='text' id='price'
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)} ></input>
+                </div>
+                <div>
+                    <label htmlFor='countInStock'>Count In Stock</label>
+                    <input type='text' id='countInStock'
+                        value={countInStock}
+                        onChange={(e) => setCountInStock(e.target.value)} ></input>
+                </div>
+                <div>
+                    <label htmlFor='brand'>Raw Descrption</label>
+                    <input type='text' id='brand'
+                        value={brand}
+                        onChange={(e) => setBrand(e.target.value)} ></input>
+                </div>
+                <div>
+                    <label htmlFor='description'>Description</label>
+                    <input type='text' id='description'
+                        value={description}
+                    ></input>
+                </div>
+                <MessageBox>Use this tool below to custom your product's description.<br></br>The right side shows what you will see in the browser</MessageBox>
+                <MarkDownEditor valueChild={handleCallback}></MarkDownEditor>
+                <div>
+                    <label htmlFor='color'>Color</label>
+                    <input type='text' id='color'
+                        value={color}
+                        onChange={(e) => setColor(e.target.value)} ></input>
+                </div>
+
+                <div>
+                    <button className="sign-in"> Update This Product </button>
+                </div>
 
 
+            </form>
         </div>
+
+
     )
 }

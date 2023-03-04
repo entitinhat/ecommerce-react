@@ -5,7 +5,7 @@ import { Navigate, useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom';
 import { detailsUser } from '../constants/userActions';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
-
+import { BASE_URL } from '../helper.js';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -71,7 +71,7 @@ export default function UserEditScreen() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get(`/api/users/${id}`,
+                const { data } = await axios.get(`${BASE_URL}/api/users/${id}`,
                     {
                         headers: { Authorization: `Bearer ${userInfo.token}` },
                     });
@@ -100,7 +100,7 @@ export default function UserEditScreen() {
             type: 'UPDATE_REQUEST'
         })
         try {
-            await axios.put(`/api/users/${id}`,
+            await axios.put(`${BASE_URL}/api/users/${id}`,
                 {
                     _id: id,
                     name,

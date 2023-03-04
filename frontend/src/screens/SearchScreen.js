@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useReducer, useState } from 'react'
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom';
@@ -7,6 +8,8 @@ import LoadingBox from '../component/LoadingBox';
 import MessageBox from '../component/MessageBox';
 import Product from '../component/Product';
 import { USER_UPDATE_PROFILE_SUCCESS } from '../constants/userConstants';
+
+import { BASE_URL } from '../helper.js';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -86,18 +89,19 @@ export default function SearchScreen(props) {
     const price = sp.get('price') || 'all';
     const color = sp.get('color') || 'all';
     const order = sp.get('order') || 'az'    // 13.1 Part 1
-    console.log(category, 'category la')
+
+    const searchRef = useRef();
 
     const [{ loading, products, error, countProducts }, dispatch] =   // count products step 2
         useReducer(reducer, {
             loading: true,
             error: ''
         })
-    console.log('test products la', Array.isArray(products))
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get(`/api/products/search?query=${query}&type=${type}&category=${category}&price=${price}&color=${color}&order=${order}`);  // 13.1 Part 2
+                const { data } = await axios.get(`${BASE_URL}/api/products/search?query=${query}&type=${type}&category=${category}&price=${price}&color=${color}&order=${order}`);  // 13.1 Part 2
                 dispatch({
                     type: 'FETCH_SUCCESS',
                     payload: data
@@ -118,7 +122,7 @@ export default function SearchScreen(props) {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const { data } = await axios.get('/api/products/categories');
+                const { data } = await axios.get(`${BASE_URL}/api/products/categories`);
                 setCategories(data);  // ["Pants","Shirts"]
             }
             catch (error) {
@@ -135,6 +139,10 @@ export default function SearchScreen(props) {
         const filterPrice = filter.price || price;
         const filterColor = filter.color || color;
         const sortOrder = filter.order || order  // 13.1 Part 3
+        window.scrollTo({
+            behavior: 'smooth',
+            top: searchRef.current.offsetTop,
+        })
         return `/search?query=${filterQuery}&type=${filterType}&category=${filterCategory}&price=${filterPrice}&color=${filterColor}&order=${sortOrder}`// 13.1 Part 4
     }
 
@@ -232,7 +240,7 @@ export default function SearchScreen(props) {
                 </div>
 
             </div>
-            <div className="search-products search-items">
+            <div ref={searchRef} className="search-products search-items">
                 <div className="row">
                     <p className="count-result">
                         {countProducts < 2 ?

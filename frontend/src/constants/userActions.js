@@ -16,6 +16,7 @@ import {
     USER_UPDATE_SUCCESS,
     USER_UPDATE_FAIL,
 } from "./userConstants"
+import { BASE_URL } from "../helper.js";
 
 
 export const updateUser = (user) => async (dispatch, getState) => {
@@ -24,7 +25,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
         userSignin: { userInfo },
     } = getState();
     try {
-        const { data } = await axios.put(`/api/users/${user._id}`, user, {
+        const { data } = await axios.put(`${BASE_URL}/api/users/${user._id}`, user, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
@@ -43,7 +44,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     dispatch({ type: USER_UPDATE_PROFILE_REQUEST, payload: user });
     const { userSignin: { userInfo } } = getState();
     try {
-        const { data } = await axios.put(`/api/users/${userInfo._id}`, user, {
+        const { data } = await axios.put(`${BASE_URL}/api/users/${userInfo._id}`, user, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data })
@@ -66,7 +67,7 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
         userSignin: { userInfo },
     } = getState();
     try {
-        const { data } = await axios.get(`/api/users/${userId}`, {
+        const { data } = await axios.get(`${BASE_URL}/api/users/${userId}`, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
 
@@ -85,7 +86,7 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
 export const register = (name, email, password) => async (dispatch) => {
     dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } })
     try {
-        const { data } = await axios.post('/api/users/register', { name, email, password });
+        const { data } = await axios.post(`${BASE_URL}/api/users/register`, { name, email, password });
         dispatch({
             type: USER_REGISTER_SUCCESS,
             payload: data
@@ -107,7 +108,7 @@ export const register = (name, email, password) => async (dispatch) => {
 export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } })
     try {
-        const { data } = await axios.post('/api/users/signin', { email, password });
+        const { data } = await axios.post(`${BASE_URL}/api/users/signin`, { email, password });
         dispatch({
             type: USER_SIGNIN_SUCCESS,
             payload: data

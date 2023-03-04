@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import EmailSending from '../component/EmailSending.js'
 import { CART_CLEAR } from '../constants/cartConstants';
-
+import { BASE_URL } from '../helper.js';
 
 
 export default function PlaceOrderScreen() {
@@ -15,10 +15,7 @@ export default function PlaceOrderScreen() {
     const { shippingAddress, paymentMethod, cartItems } = cart;
     console.log(cartItems, 'cartItems in place order screen')
     const cartItemsClone = cartItems;
-    // console.log(cartItemsClone[0].name, 'cartItems clone')
-    // cartItemsClone.map((cartItem)=> {
 
-    // })
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     console.log(userInfo, 'userInfo trong placeorder')
@@ -36,7 +33,7 @@ export default function PlaceOrderScreen() {
         alert('Order Successfully! You can check your email to see your orders. Thanks for choosing our shop! Have A Nice Day ^^ ');
         navigate('/home');
         dispatch({ type: CART_CLEAR });
-        const res = await fetch('/api/send', {
+        const res = await fetch(`${BASE_URL}/api/send`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -44,7 +41,11 @@ export default function PlaceOrderScreen() {
             body: JSON.stringify({
                 email,
                 cartItemsClone,
-                userInfo
+                userInfo,
+                itemsPrice,
+                shippingPrice,
+                taxPrice,
+                totalPrice
             })
         });
 
@@ -68,7 +69,7 @@ export default function PlaceOrderScreen() {
 
             <div className="placeorder-row">
                 <div className="col-3">
-                    <div className="card-body">
+                    <div className="placeorder-body">
                         <div> <h1> Shipping</h1></div>
                         <div>Name: {shippingAddress.fullName} </div>
                         <div>Address:&nbsp;
@@ -77,11 +78,11 @@ export default function PlaceOrderScreen() {
                             {shippingAddress.postalCode},&nbsp;
                             {shippingAddress.country} </div>
                     </div>
-                    <div className="card-body">
+                    <div className="placeorder-body">
                         <div><h1>Payment</h1></div>
-                        <p><strong>Method</strong>: {paymentMethod}</p>
+                        <div><strong>Method</strong>: {paymentMethod}</div>
                     </div>
-                    <div className="card-body">
+                    <div className="placeorder-body">
                         <div><h1>Order Items</h1></div>
                         <ul>
                             {cartItems.map((item) => (

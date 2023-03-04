@@ -1,0 +1,1 @@
+export const BASE_URL = "https://fourmens-ecommerce-website.onrender.com"

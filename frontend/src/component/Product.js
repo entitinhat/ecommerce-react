@@ -10,22 +10,25 @@ export default function Product(props) {
     const { product } = props;
     const [image, setImage] = useState(product.image);
     const toggleImage = () => {
-        setTimeout(() => {
-            if (image === product.image) {
-                if (product.imageBack) {
-                    setImage(product.imageBack);
-                }
+        // setTimeout(() => {
+        //     if (image === product.image) {
+        //         if (product.imageBack) {
+        //             setImage(product.imageBack);
+        //         }
 
-            } else {
-                setImage(product.image);
+        //     } else {
+        //         setImage(product.image);
+        //     }
+        // }, 150)
+        if (image === product.image) {
+            if (product.imageBack) {
+                setImage(product.imageBack);
             }
-        }, 150)
+
+        } else {
+            setImage(product.image);
+        }
     }
-
-
-
-
-
     return (
         <div key={product._id} className="card">
             <Link to={`/product/${product._id}`}>
@@ -35,13 +38,14 @@ export default function Product(props) {
                 <Link to={`/product/${product._id}`}>
                     <h2>{product.name}</h2>
                 </Link>
+                <div className="price">${product.price}</div>
                 <div className='row-left'>
                     <Rating
                         rating={product.rating} numReviews={product.numReviews}
                     />
                     <span className="num-review">{product.numReviews} {product.numReviews > 1 ? 'reviews' : 'review'}</span>
                 </div>
-                <div className="price">{product.price}</div>
+
             </div>
 
         </div>

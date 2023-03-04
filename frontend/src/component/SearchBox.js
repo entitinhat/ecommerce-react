@@ -15,17 +15,17 @@ export default function SearchBox(props) {
     }
     console.log(searchQuery);
     return (
-        <div>
-            <div className="search-box">
-                <form name="search-box" onSubmit={searchSubmitHandler}>
-                    <div className="row">
-                        <input type="text" placeholder="What are you looking for?"
-                            onChange={(e) => setSearchQuery(e.target.value)}></input>
-                        <button type="submit" className="search-btn"><i className="fa fa-search search-icon"></i></button>
-                    </div>
 
-                </form>
-            </div>
+        <div className="search-box">
+            <form name="search-box" onSubmit={searchSubmitHandler}>
+                <div className="row">
+                    <input type="text" placeholder="What are you looking for?"
+                        onChange={(e) => setSearchQuery(e.target.value)}></input>
+                    <button type="submit" className="search-btn"><i className="fa fa-search search-icon"></i></button>
+                </div>
+
+            </form>
         </div>
+
     )
 }

@@ -17,6 +17,9 @@ export default function SignInScreen(props) {
 
     const { userInfo, loading, error, success } = userSignin;
     const cart = useSelector((state) => state.cart);
+    const userDetails = useSelector((state) => state.userDetails);
+    const { user } = userDetails;
+
     const [eye, setEye] = useState(<i className="fa fa-eye-slash eye-icon"></i>);
     const [typePassword, setTypePassword] = useState("password");
     const toggleEye = () => {
@@ -47,6 +50,7 @@ export default function SignInScreen(props) {
     }
 
     console.log(userInfo, 'test userinfo')
+    console.log(user, 'test user')
 
     return (
         <>

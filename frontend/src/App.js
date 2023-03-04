@@ -32,6 +32,7 @@ import LoadingBox from './component/LoadingBox';
 import MessageBox from './component/MessageBox';
 import { USER_UPDATE_PROFILE_RESET } from './constants/userConstants';
 import { ToastContainer } from 'react-toastify';
+import { BASE_URL } from './helper.js';
 
 
 const reducer = (state, action) => {
@@ -55,7 +56,7 @@ const reducer = (state, action) => {
 
 function App(props) {
 
-  // const [{ loading, users, error, nameUpdate, emailUpdate, successDelelte }, dispatch] = useReducer(reducer, {
+  // const [{ loading, error, nameUpdate, emailUpdate, successDelelte }, dispatch] = useReducer(reducer, {
   //   loading: true,
   //   error: ''
   // })
@@ -71,18 +72,16 @@ function App(props) {
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
-  // const dispatch = useDispatch();
+
 
   const [nameUpdatee, setNameUpdate] = useState('');
   const [profileImage, setProfileImage] = useState('');
-  // const [userss, setUserss] = useState({})
 
-  // console.log(loading)
   useEffect(() => {
 
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`/api/users/${userInfo._id}`, {
+        const { data } = await axios.get(`${BASE_URL}/api/users/${userInfo._id}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` }
         });
         setNameUpdate(data.name)
@@ -103,34 +102,7 @@ function App(props) {
     fetchData();
 
   }, [userInfo])
-  // const namee = user.name;
-  console.log(user, 'user in userDetails in app.js')
-  // console.log(nameUpdate, 'user name update in backend')
-  // console.log(users, 'user backend in app.js')
 
-
-
-  // useEffect(() => {
-  //   if (!user) {
-  //     dispatch({ type: USER_UPDATE_PROFILE_RESET });
-  //     dispatch(detailsUser(userInfo._id));
-  //   } else {
-  //     setName(user.name);
-
-  //     // setPassword(user.password);
-  //     // setAddress(user.address);
-  //     // setCity(user.city);
-  //     // setCountry(user.country);
-  //   }
-
-  // }, [dispatch, userInfo, user]);
-  // useEffect(() => {
-  //   let api = `/api/users/${userInfo._id}`;
-  //   fetch(api)
-  //     .then((response) => response.json())
-  //   // .then((datas) => setUserss(datas))
-  // }, [])
-  console.log(userInfo, 'hook users')
 
   const signOutHandler = () => {
     dispatch(signout());
@@ -138,14 +110,7 @@ function App(props) {
   const viewProfileHandler = () => {
 
   }
-  // const searchSubmitHandler = (e) => {
-  //   e.preventDefault();
-  //   navigate(`/search/hello`);
-  // }
-  console.log('user in app.js', user);
-  console.log('userInfo in app.js', userInfo)
-  console.log('profile img', profileImage)
-  // console.log(users, 'user la ig')
+
   return (
     <>
       {/* {loading ? (
@@ -154,7 +119,7 @@ function App(props) {
         <MessageBox variant="danger"> {error} </MessageBox>
       ) : ( */}
       <BrowserRouter>
-        {/* <ToastContainer /> */}
+
         <div className={
           !sideBar
             ? "container"
@@ -162,10 +127,8 @@ function App(props) {
         }>
 
           <header className="row">
-            <div>
-              <button className="sidebar-btn" onClick={() => setSideBar(!sideBar)}>
-                <i className="fa fa-bars"></i>
-              </button>
+            <div className="brand-wrapper">
+
               <Link className="brand" to="/">4Mens</Link>
             </div>
 
@@ -174,7 +137,7 @@ function App(props) {
             <div className='testdropdown'>
               <Link to="/cart">
                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                My Cart
+                Cart
                 {cartItems.length > 0 && (
                   <span className="badge">{cartItems.length}</span>
                 )}
@@ -185,8 +148,6 @@ function App(props) {
                   <Link to="#" className='row center'>
                     {nameUpdatee}
                     <img src={profileImage} alt='' className="profile-pic-mini"></img>
-                    {/* <img src={} alt=""></img> */}
-                    {/* <i className="fa fa-caret-down"></i> */}
                   </Link>
                   <ul className="dropdown-content">
                     <li><Link to="/home">Home</Link></li>
