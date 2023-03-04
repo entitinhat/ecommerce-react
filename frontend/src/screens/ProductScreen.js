@@ -208,9 +208,9 @@ export default function ProductScreen(props) {
                         </div>
                         <div className=''>
                             {product.reviews.map((review) => (
-                                <>
+                                <div key={review._id}>
                                     <ul className="review-comment">
-                                        <li key={review._id}>
+                                        <li >
                                             <strong>{review.name}</strong>
                                             <div>
                                                 <Rating rating={review.rating}></Rating>
@@ -219,7 +219,7 @@ export default function ProductScreen(props) {
                                             <p>{review.comment}</p>
                                         </li>
                                     </ul>
-                                </>
+                                </div>
                             ))}
                         </div>
                         <div className=''>

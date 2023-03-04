@@ -67,6 +67,8 @@ productRouter.delete('/:id',
 
     }))
 
+// Review API
+
 productRouter.post(
     '/:id/reviews',
     isAuth,
@@ -75,6 +77,7 @@ productRouter.post(
         const product = await Product.findById(productId);
         if (product) {
             if (product.reviews.find((x) => x.name === req.user.name)) {
+
                 return res
                     .status(400)
                     .send({ message: 'You already submitted a review' });
@@ -93,8 +96,8 @@ productRouter.post(
             res.status(201).send({
                 message: 'Review Created',
                 review: updatedProduct.reviews[updatedProduct.reviews.length - 1],
-                numReviews: product.numReviews,
-                rating: product.rating,
+                numReviews: updatedProduct.numReviews,
+                rating: updatedProduct.rating,
             });
         } else {
             res.status(404).send({ message: 'Product Not Foundd' });
